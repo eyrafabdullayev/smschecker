@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SmsService {
 
-    List<Sms> getUnAnsweredMessages();
+    List<Sms> getAllSmsMessages();
 
     List<Sms> getSpecificUnAnsweredMessages();
 

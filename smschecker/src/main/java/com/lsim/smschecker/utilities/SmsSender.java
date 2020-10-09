@@ -24,9 +24,8 @@ public class SmsSender extends Thread {
     }
 
     public void run() {
-        SmsSender sender = new SmsSender(value);
         try {
-            sender.sendGet();
+            sendGet();
         } catch (Exception e) {
             e.printStackTrace();
         }

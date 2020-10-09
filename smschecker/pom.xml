@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
     <groupId>com.lsim</groupId>
-    <artifactId>sms-checker</artifactId>
+    <artifactId>smschecker</artifactId>
     <version>0.0.1</version>
     <name>sms-checker</name>
     <description>The function of the application is add a new sms to the db and constantly check unprocessed sms and

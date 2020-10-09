@@ -17,7 +17,7 @@ public class SmsServiceImpl implements SmsService {
     }
 
     @Override
-    public List<Sms> getUnAnsweredMessages() {
+    public List<Sms> getAllSmsMessages() {
         return smsRepository.findAll();
     }
 

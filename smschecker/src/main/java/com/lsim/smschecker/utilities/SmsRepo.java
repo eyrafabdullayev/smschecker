@@ -26,13 +26,4 @@ public class SmsRepo {
         available = true;
         unAnsweredMessages.add(sms);
     }
-
-    public static int getUnAnsweredMessagesOnlyRejected() {
-        int count=0;
-        for(Sms sms : unAnsweredMessages) {
-            if(sms.getIsSent() != 1)
-                count++;
-        }
-        return count;
-    }
 }

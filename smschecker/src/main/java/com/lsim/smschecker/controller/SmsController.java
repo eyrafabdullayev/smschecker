@@ -27,30 +27,27 @@ public class SmsController {
     @PostMapping("/send")
     @ResponseBody
     public ResponseEntity<Map<String, String>> serverSideSendSms(@Valid @RequestBody SmsRequestDto smsRequestDto, BindingResult
-                                                                 bindingResult) {
+            bindingResult) {
         Map<String, String> response = new HashMap<String, String>();
 
         try {
 
-            if(bindingResult.hasErrors()) {
+            if (bindingResult.hasErrors())
                 throw new IllegalArgumentException();
-            }
 
             service.insertUnAnsweredMessage(smsRequestDto.getMsisdn(), smsRequestDto.getSenderName(),
                     smsRequestDto.getMessageBody());
 
             response.put("success", "201");
 
-            logger.info("SMS_ADDED_TO_DATABASE","SMS added to the db successfully!");
+            logger.info("SMS_ADDED_TO_DATABASE", "SMS added to the db successfully!");
         } catch (IllegalArgumentException e) {
             response.put("fail", "500");
-
             logger.warn("ILLEGAL_ARGUMENT_EXCEPTION", "Illegal Argument(s)");
         } catch (Exception e) {
             response.put("fail", "500");
-
-            logger.error("SMS_COULD_NOT_ADD_TO_DATABASE","Internal Server Error");
-        }  finally {
+            logger.error("SMS_COULD_NOT_ADD_TO_DATABASE", "Internal Server Error");
+        } finally {
             return ResponseEntity.ok(response);
         }
     }
@@ -66,7 +63,7 @@ public class SmsController {
         try {
             boolean match = msisdn.matches(new MyRegex().pattern);
 
-            if(!match) {
+            if (!match) {
                 response.put("code", "1");
                 response.put("message", "FAIL");
 
