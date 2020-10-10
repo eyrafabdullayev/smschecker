@@ -63,12 +63,8 @@ public class SmsController {
         try {
             boolean match = msisdn.matches(new MyRegex().pattern);
 
-            if (!match) {
-                response.put("code", "1");
-                response.put("message", "FAIL");
-
-                throw new IllegalStateException();
-            }
+            if (!match)
+               throw new IllegalStateException();
 
             service.updateSpecificUnAnsweredMessage(msisdn, messageBody);
 
@@ -77,8 +73,12 @@ public class SmsController {
 
             logger.info("SMS_SENT", "SMS sent to the client successfully!");
         } catch (IllegalStateException e) {
+            response.put("code", "1");
+            response.put("message", "FAIL");  
             logger.info("SMS_IS_NOT_ANSWERED", "SMS couldn't send to the client!");
         } catch (Exception e) {
+            response.put("code", "1");
+            response.put("message", "FAIL");
             logger.error("SMS_IS_NOT_ANSWERED", "Internal Server Error");
         } finally {
             return ResponseEntity.ok(response);
